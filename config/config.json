@@ -1,4 +1,1 @@
-{
-  "privateKey": "0a55beaba0448ef8bcafcaadb91f86fe9773cfc30ede47bde1aa6493c02b5ad4",
-  "network": "http://127.0.0.1:8545"
-}
+{"privateKey":"8a7c28813e1e6dbe318d9533fa322e893e16f681de9059cf1ba4e2cfbbb792a6","network":"http://127.0.0.1:8545","contractAddress":"0xcA7319c5289185812C5F3E4131C48C202eFA96Fe"}
