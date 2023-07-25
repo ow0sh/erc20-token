@@ -5,6 +5,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ow0sh/erc20-token/src/models"
 )
 
 type keys struct {
@@ -12,7 +13,7 @@ type keys struct {
 	ContractAddress string `json:"contractAddress"`
 }
 
-func (k *keys) Keys() Keys {
+func (k *keys) Keys() models.Keys {
 	contractAddr := common.HexToAddress(k.ContractAddress)
 	privateKeyECDSA, err := crypto.HexToECDSA(k.PrivateKey)
 	if err != nil {
@@ -23,5 +24,5 @@ func (k *keys) Keys() Keys {
 	if !ok {
 		panic("failed to get ecdsa public key")
 	}
-	return Keys{PrivateKey: privateKeyECDSA, PublicKey: publicKey, PublicKeyECDSA: publicKeyECDSA, ContractAddress: contractAddr}
+	return models.Keys{PrivateKey: privateKeyECDSA, PublicKey: publicKey, PublicKeyECDSA: publicKeyECDSA, ContractAddress: contractAddr}
 }

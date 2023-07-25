@@ -1,33 +1,26 @@
 package config
 
 import (
-	crypto1 "crypto"
-	"crypto/ecdsa"
 	"encoding/json"
 	"os"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/jmoiron/sqlx"
+	"github.com/ow0sh/erc20-token/src/models"
 	"github.com/sirupsen/logrus"
 )
 
-type Keys struct {
-	PrivateKey      *ecdsa.PrivateKey
-	PublicKey       crypto1.PublicKey
-	PublicKeyECDSA  *ecdsa.PublicKey
-	ContractAddress common.Address
-}
-
 type Config interface {
 	Log() *logrus.Logger
-	Client() *ethclient.Client
-	Keys() Keys
+	Client() *Client
+	Keys() models.Keys
+	DB() *sqlx.DB
 }
 
 type config struct {
 	logger
 	client
 	keys
+	db
 }
 
 func NewConfig(cfgPath string) (Config, error) {

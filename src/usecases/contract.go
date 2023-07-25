@@ -9,17 +9,17 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/ow0sh/erc20-token/config"
 	"github.com/ow0sh/erc20-token/contracts"
+	"github.com/ow0sh/erc20-token/src/models"
 )
 
 type ContractUseCase struct {
 	instance *contracts.Contracts
-	keys     config.Keys
+	keys     models.Keys
 	client   *ethclient.Client
 }
 
-func NewContractUseCase(instance *contracts.Contracts, keys config.Keys, client *ethclient.Client) *ContractUseCase {
+func NewContractUseCase(instance *contracts.Contracts, keys models.Keys, client *ethclient.Client) *ContractUseCase {
 	return &ContractUseCase{instance: instance, keys: keys, client: client}
 }
 

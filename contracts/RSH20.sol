@@ -11,10 +11,17 @@ interface IERC20 {
         uint256 amount
     ) external returns (bool);
 
-    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Transfer(
+        address indexed from,
+        address indexed to,
+        uint256 value,
+        uint256 tokens
+    );
 }
 
 contract RSH20 is IERC20 {
+    event BalanceChanged(address addr, uint256 balance);
+
     string public constant name = "Test RSH20 tokens";
     string public constant symbol = "RSH";
     uint public constant decimals = 18;
@@ -42,7 +49,9 @@ contract RSH20 is IERC20 {
         require(amount <= balances[msg.sender]);
         balances[msg.sender] -= amount;
         balances[recipient] += amount;
-        emit Transfer(msg.sender, recipient, amount);
+        emit Transfer(msg.sender, recipient, 0, amount);
+        emit BalanceChanged(msg.sender, balances[msg.sender]);
+        emit BalanceChanged(recipient, balances[recipient]);
         return true;
     }
 }

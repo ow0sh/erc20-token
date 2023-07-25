@@ -1,17 +1,24 @@
 package main
 
 import (
-	"math/big"
+	"context"
+	"os"
+	"os/signal"
+	"sync"
+	"syscall"
 
-	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	"github.com/ow0sh/erc20-token/config"
+	_ "github.com/jackc/pgx"
 	"github.com/ow0sh/erc20-token/contracts"
-	"github.com/ow0sh/erc20-token/usecases"
+	"github.com/ow0sh/erc20-token/src/chain"
+	"github.com/ow0sh/erc20-token/src/config"
+	"github.com/ow0sh/erc20-token/src/repos/sqlx"
+	"github.com/ow0sh/erc20-token/src/state_syncer"
+	"github.com/ow0sh/erc20-token/src/usecases"
 )
 
-const defaultConfigPath = "./config/config.json"
+const defaultConfigPath = "./src/config/config.json"
 
 func main() {
 	cfg, err := config.NewConfig(defaultConfigPath)
@@ -22,11 +29,20 @@ func main() {
 	log := cfg.Log()
 	client := cfg.Client()
 	keys := cfg.Keys()
+	db := cfg.DB()
+
+	ctx, cancel := ctxWithSig()
+	defer func() {
+		if err := recover(); err != nil {
+			log.Error(err)
+			cancel()
+		}
+	}()
 
 	address := crypto.PubkeyToAddress(*keys.PublicKeyECDSA)
 
 	if keys.ContractAddress.Hex() == "0x0000000000000000000000000000000000000000" {
-		addr, err := Deploy(client, keys.PrivateKey, address)
+		addr, err := Deploy(client.WsCli, keys.PrivateKey, address)
 		if err != nil {
 			log.Error(err)
 		}
@@ -37,29 +53,37 @@ func main() {
 		log.Info("Contract successfully deployed")
 	}
 
-	instance, err := contracts.NewContracts(keys.ContractAddress, client)
+	instance, err := contracts.NewContracts(keys.ContractAddress, client.WsCli)
 	if err != nil {
 		log.Error(err)
 	}
 
-	contractUseCase := usecases.NewContractUseCase(instance, keys, client)
-	balance, err := contractUseCase.BalanceOf(address)
-	if err != nil {
-		log.Error(err)
-	}
-	log.Info(balance)
+	ethChain := chain.NewChain(
+		cfg.Client().HttpCli, cfg.Client().WsCli, keys.ContractAddress,
+	)
 
-	toAddr := common.HexToAddress("0x159B2dCdcd6DE5EC249Ca5ed6B5F8dD05B24DA39")
-	tx, err := contractUseCase.Transfer(toAddr, big.NewInt(10000))
-	if err != nil {
-		log.Error(err)
-	}
+	transferUseCase := usecases.NewTransferLogUseCase(sqlx.NewTransferLogsRepo(db))
+	balanceUseCase := usecases.NewBalanceLogUseCase(sqlx.NewBalanceLogRepo(db))
+	contractUseCase := usecases.NewContractUseCase(instance, keys, client.WsCli)
+	eventUseCase := usecases.NewEventUseCase(transferUseCase, balanceUseCase, ethChain, *contractUseCase)
+	blockUseCase := usecases.NewBlockUseCase(sqlx.NewBlocksRepo(db))
 
-	log.Info(tx.Hash())
+	group := &sync.WaitGroup{}
+	state_syncer.NewStateSync(log, ethChain, eventUseCase, blockUseCase, ethChain.BlockAtStart()).Run(ctx, group)
+	group.Wait()
+}
 
-	balance, err = contractUseCase.BalanceOf(toAddr)
-	if err != nil {
-		log.Error(err)
-	}
-	log.Info(balance)
+func ctxWithSig() (context.Context, func()) {
+	ctx, cancel := context.WithCancel(context.Background())
+	ch := make(chan os.Signal, 1)
+	signal.Notify(ch, syscall.SIGTERM, syscall.SIGKILL, syscall.SIGINT)
+
+	go func() {
+		select {
+		case <-ch:
+			cancel()
+		}
+	}()
+
+	return ctx, cancel
 }

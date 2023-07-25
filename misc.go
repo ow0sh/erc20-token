@@ -10,9 +10,8 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/ow0sh/erc20-token/config"
 	"github.com/ow0sh/erc20-token/contracts"
-	"github.com/ow0sh/erc20-token/models"
+	"github.com/ow0sh/erc20-token/src/models"
 	"github.com/pkg/errors"
 )
 
@@ -43,8 +42,8 @@ func Deploy(cli *ethclient.Client, private *ecdsa.PrivateKey, address common.Add
 	return &contractAddr, nil
 }
 
-func RewriteConfig(keys config.Keys) error {
-	fileToRead, err := os.Open("./config/config.json")
+func RewriteConfig(keys models.Keys) error {
+	fileToRead, err := os.Open("./src/config/config.json")
 	defer fileToRead.Close()
 	if err != nil {
 		return errors.Wrap(err, "failed to open file")
@@ -59,7 +58,7 @@ func RewriteConfig(keys config.Keys) error {
 		return errors.Wrap(err, "failed to marshal variable")
 	}
 
-	fileToWrite, err := os.OpenFile("./config/config.json", os.O_WRONLY, 0644)
+	fileToWrite, err := os.OpenFile("./src/config/config.json", os.O_WRONLY, 0644)
 	if err != nil {
 		return errors.Wrap(err, "failed to open filetowrite")
 	}
