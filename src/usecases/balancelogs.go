@@ -30,8 +30,7 @@ func (use BalanceLogUseCase) GetBalance(ctx context.Context, address string) (*r
 }
 
 func (use BalanceLogUseCase) Exist(ctx context.Context, address string) (bool, error) {
-	test, err := use.repo.Selector().WhereAddrS(address).Get(ctx)
-	fmt.Println(test.Address)
+	_, err := use.repo.Selector().WhereAddrS(address).Get(ctx)
 	if err == sql.ErrNoRows {
 		return false, nil
 	}

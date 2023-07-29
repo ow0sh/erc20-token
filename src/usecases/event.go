@@ -51,8 +51,6 @@ func (e eventUseCase) Process(ctx context.Context, log types.Log, logrus *logrus
 		}
 
 		exist, err = e.balanceUse.Exist(context.Background(), event.From.Hex())
-		fmt.Println(exist)
-		fmt.Println(event.From.Hex())
 		if err != nil {
 			return errors.Wrap(err, "failed to get balance exist")
 		}
@@ -62,7 +60,7 @@ func (e eventUseCase) Process(ctx context.Context, log types.Log, logrus *logrus
 				return errors.Wrap(err, "failed to update balance")
 			}
 		} else {
-			bal, err := e.contractUse.BalanceOf(event.To)
+			bal, err := e.contractUse.BalanceOf(event.From)
 			if err != nil {
 				return errors.Wrap(err, "failed to get balance of from")
 			}
@@ -74,7 +72,6 @@ func (e eventUseCase) Process(ctx context.Context, log types.Log, logrus *logrus
 		}
 
 		exist, err = e.balanceUse.Exist(context.Background(), event.To.Hex())
-		fmt.Println(exist)
 		if err != nil {
 			return errors.Wrap(err, "failed to get balance exist")
 		}

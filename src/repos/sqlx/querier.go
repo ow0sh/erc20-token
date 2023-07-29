@@ -29,7 +29,7 @@ func newQuerier(table string, insertColumns ...string) querier {
 	}
 }
 
-func (s *querier) QCreate(ctx context.Context, dest interface{}, q repos.DB) error {
+func (s querier) QCreate(ctx context.Context, dest interface{}, q repos.DB) error {
 	stmt := s.sqlInsert.
 		Suffix("RETURNING *")
 	sql, args, err := stmt.ToSql()
@@ -45,7 +45,7 @@ func (s *querier) QCreate(ctx context.Context, dest interface{}, q repos.DB) err
 	return nil
 }
 
-func (r *querier) QUpdate(ctx context.Context, dest interface{}, q repos.DB) error {
+func (r querier) QUpdate(ctx context.Context, dest interface{}, q repos.DB) error {
 	stmt := r.sqlUpdate.
 		Suffix("RETURNING *")
 
@@ -62,7 +62,7 @@ func (r *querier) QUpdate(ctx context.Context, dest interface{}, q repos.DB) err
 	return nil
 }
 
-func (r *querier) QDelete(ctx context.Context, q repos.DB) error {
+func (r querier) QDelete(ctx context.Context, q repos.DB) error {
 	stmt, args, err := r.sqlDelete.ToSql()
 	if err != nil {
 		return errors.Wrap(err, "failed to convert to sql")
@@ -76,7 +76,7 @@ func (r *querier) QDelete(ctx context.Context, q repos.DB) error {
 	return nil
 }
 
-func (s *querier) QSelect(ctx context.Context, dest interface{}, q repos.DB) error {
+func (s querier) QSelect(ctx context.Context, dest interface{}, q repos.DB) error {
 	sql, args, err := s.sqlSelect.ToSql()
 	if err != nil {
 		return errors.Wrap(err, "failed to convert to sql")
@@ -93,14 +93,11 @@ func (s *querier) QSelect(ctx context.Context, dest interface{}, q repos.DB) err
 	return nil
 }
 
-func (s *querier) QGet(ctx context.Context, dest interface{}, q repos.DB) error {
+func (s querier) QGet(ctx context.Context, dest interface{}, q repos.DB) error {
 	sql, args, err := s.sqlSelect.ToSql()
 	if err != nil {
 		return errors.Wrap(err, "failed to convert to sql")
 	}
-
-	fmt.Println(sql)
-	fmt.Println(args...)
 
 	err = q.GetContext(ctx, dest, sql, args...)
 	if err != nil {
