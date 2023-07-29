@@ -20,8 +20,6 @@ interface IERC20 {
 }
 
 contract RSH20 is IERC20 {
-    event BalanceChanged(address addr, uint256 balance);
-
     string public constant name = "Test RSH20 tokens";
     string public constant symbol = "RSH";
     uint public constant decimals = 18;
@@ -50,8 +48,6 @@ contract RSH20 is IERC20 {
         balances[msg.sender] -= amount;
         balances[recipient] += amount;
         emit Transfer(msg.sender, recipient, 0, amount);
-        emit BalanceChanged(msg.sender, balances[msg.sender]);
-        emit BalanceChanged(recipient, balances[recipient]);
         return true;
     }
 }

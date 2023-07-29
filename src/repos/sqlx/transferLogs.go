@@ -52,26 +52,26 @@ func (s transferLogsRepo) OrderBy(by string, order string) repos.TransferLogsSel
 	return s
 }
 
+func (s transferLogsRepo) WhereHash(hash string) repos.TransferLogsSelector {
+	s.q.sqlSelect = s.q.sqlSelect.Where(squirrel.Eq{"hash": hash})
+	return s
+}
+
+func (s transferLogsRepo) WhereFromAddr(fromAddr string) repos.TransferLogsSelector {
+	s.q.sqlSelect = s.q.sqlSelect.Where(squirrel.Eq{"fromaddr": fromAddr})
+	return s
+}
+
+func (s transferLogsRepo) WhereToAddr(toAddrs string) repos.TransferLogsSelector {
+	s.q.sqlSelect = s.q.sqlSelect.Where(squirrel.Eq{"toaddr": toAddrs})
+	return s
+}
+
 func (s transferLogsRepo) Tx() repos.TransferLogsTransactor {
 	return s
 }
 
 func (s transferLogsRepo) Updater() repos.TransferLogsUpdater {
-	return s
-}
-
-func (s transferLogsRepo) WhereHash(hash string) repos.TransferLogsUpdater {
-	s.q.sqlUpdate = s.q.sqlUpdate.Where(squirrel.Eq{"hash": hash})
-	return s
-}
-
-func (s transferLogsRepo) WhereFromAddr(fromAddr string) repos.TransferLogsUpdater {
-	s.q.sqlUpdate = s.q.sqlUpdate.Where(squirrel.Eq{"fromaddr": fromAddr})
-	return s
-}
-
-func (s transferLogsRepo) WhereToAddr(toAddrs string) repos.TransferLogsUpdater {
-	s.q.sqlUpdate = s.q.sqlUpdate.Where(squirrel.Eq{"toaddr": toAddrs})
 	return s
 }
 

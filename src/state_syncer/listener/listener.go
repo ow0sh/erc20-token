@@ -20,12 +20,11 @@ import (
 )
 
 type EventListener struct {
-	log         *logrus.Entry
-	ethcli      *ethbackend.EthBackend
-	blockUse    usecases.BlockUseCase
-	eventUse    usecases.EventUseCase
-	transferUse usecases.TransferLogUseCase
-	chain       chain.Chain
+	log      *logrus.Entry
+	ethcli   *ethbackend.EthBackend
+	blockUse usecases.BlockUseCase
+	eventUse usecases.EventUseCase
+	chain    chain.Chain
 
 	startAt uint64
 	net     int
@@ -37,11 +36,14 @@ type EventListener struct {
 var topics = [][]common.Hash{
 	{
 		contracts.ContractsTransfer{}.Topic(),
-		contracts.ContractsBalanceChanged{}.Topic(),
 	},
 }
 
-func NewEventListener(log *logrus.Logger, ch chain.Chain, eventUse usecases.EventUseCase, blockUse usecases.BlockUseCase, startAt uint64) *EventListener {
+func NewEventListener(log *logrus.Logger,
+	ch chain.Chain,
+	eventUse usecases.EventUseCase,
+	blockUse usecases.BlockUseCase,
+	startAt uint64) *EventListener {
 	return &EventListener{log: log.WithFields(logrus.Fields{"listener": "event",
 		"network": ch.ChainId()}),
 		ethcli:   ch.ETHCLI(),
@@ -54,7 +56,6 @@ func NewEventListener(log *logrus.Logger, ch chain.Chain, eventUse usecases.Even
 
 func (d *EventListener) Start(ctx context.Context, group *sync.WaitGroup) {
 	startAt, _ := d.blockUse.GetLastBlock(ctx, fmt.Sprint(d.net))
-	fmt.Println(startAt)
 	if startAt != nil {
 		d.startAt = uint64(startAt.Value)
 	}
@@ -113,8 +114,7 @@ func (d *EventListener) pageLogs(ctx context.Context, startAt *uint64) error {
 			"tx_hash":   sub[ind].TxHash,
 		})
 
-		log.Info("got event")
-		if err = d.eventUse.Process(ctx, sub[ind]); err != nil {
+		if err = d.eventUse.Process(ctx, sub[ind], log); err != nil {
 			log.WithError(err).Error("failed to process")
 		}
 		setUint64P(startAt, sub[ind].BlockNumber)
@@ -142,7 +142,7 @@ func (d *EventListener) listenHead(ctx context.Context) error {
 			return errors.Wrap(err, "header subscription error")
 		case h := <-sink:
 			d.blockLock.Lock()
-			d.currentBlock = h.Number.Uint64() - 1
+			d.currentBlock = h.Number.Uint64()
 			d.log.WithField("current_block", d.currentBlock).Info("current block updated")
 			d.blockLock.Unlock()
 		}

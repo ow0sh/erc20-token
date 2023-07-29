@@ -20,6 +20,9 @@ type TransferLogsSelector interface {
 	FilterByTransferLogsId(...int64) TransferLogsSelector
 	OrderBy(string, string) TransferLogsSelector
 	Limit(uint64) TransferLogsSelector
+	WhereHash(hash string) TransferLogsSelector
+	WhereFromAddr(fromAddr string) TransferLogsSelector
+	WhereToAddr(toAddr string) TransferLogsSelector
 
 	Select(ctx context.Context) ([]TransferLog, error)
 	Get(ctx context.Context) (*TransferLog, error)
@@ -27,9 +30,6 @@ type TransferLogsSelector interface {
 
 type TransferLogsUpdater interface {
 	WhereId(...int64) TransferLogsUpdater
-	WhereHash(base string) TransferLogsUpdater
-	WhereFromAddr(fromAddr string) TransferLogsUpdater
-	WhereToAddr(toAddr string) TransferLogsUpdater
 	Update(ctx context.Context, column string, value interface{}) ([]TransferLog, error)
 }
 

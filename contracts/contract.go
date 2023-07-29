@@ -31,8 +31,8 @@ var (
 
 // ContractsMetaData contains all meta data concerning the Contracts contract.
 var ContractsMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"name\":\"BalanceChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
-	Bin: "0x6080604052678ac7230489e8000060015534801561001c57600080fd5b506001546000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055506107ea806100716000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c806306fdde031461006757806318160ddd14610085578063313ce567146100a357806370a08231146100c157806395d89b41146100f1578063a9059cbb1461010f575b600080fd5b61006f61013f565b60405161007c91906104ef565b60405180910390f35b61008d610178565b60405161009a919061052a565b60405180910390f35b6100ab610182565b6040516100b8919061052a565b60405180910390f35b6100db60048036038101906100d691906105a8565b610187565b6040516100e8919061052a565b60405180910390f35b6100f96101cf565b60405161010691906104ef565b60405180910390f35b61012960048036038101906101249190610601565b610208565b604051610136919061065c565b60405180910390f35b6040518060400160405280601181526020017f5465737420525348323020746f6b656e7300000000000000000000000000000081525081565b6000600154905090565b601281565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6040518060400160405280600381526020017f525348000000000000000000000000000000000000000000000000000000000081525081565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205482111561025557600080fd5b816000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282546102a391906106a6565b92505081905550816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282546102f891906106da565b925050819055508273ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f9ed053bb818ff08b8353cd46f78db1f0799f31c9e4458fdb425c10eccd2efc4460008560405161035f929190610753565b60405180910390a37fa448afda7ea1e3a7a10fcab0c29fe9a9dd85791503bf0171f281521551c7ec05336000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020546040516103d692919061078b565b60405180910390a17fa448afda7ea1e3a7a10fcab0c29fe9a9dd85791503bf0171f281521551c7ec05836000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205460405161044d92919061078b565b60405180910390a16001905092915050565b600081519050919050565b600082825260208201905092915050565b60005b8381101561049957808201518184015260208101905061047e565b60008484015250505050565b6000601f19601f8301169050919050565b60006104c18261045f565b6104cb818561046a565b93506104db81856020860161047b565b6104e4816104a5565b840191505092915050565b6000602082019050818103600083015261050981846104b6565b905092915050565b6000819050919050565b61052481610511565b82525050565b600060208201905061053f600083018461051b565b92915050565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006105758261054a565b9050919050565b6105858161056a565b811461059057600080fd5b50565b6000813590506105a28161057c565b92915050565b6000602082840312156105be576105bd610545565b5b60006105cc84828501610593565b91505092915050565b6105de81610511565b81146105e957600080fd5b50565b6000813590506105fb816105d5565b92915050565b6000806040838503121561061857610617610545565b5b600061062685828601610593565b9250506020610637858286016105ec565b9150509250929050565b60008115159050919050565b61065681610641565b82525050565b6000602082019050610671600083018461064d565b92915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b60006106b182610511565b91506106bc83610511565b92508282039050818111156106d4576106d3610677565b5b92915050565b60006106e582610511565b91506106f083610511565b925082820190508082111561070857610707610677565b5b92915050565b6000819050919050565b6000819050919050565b600061073d6107386107338461070e565b610718565b610511565b9050919050565b61074d81610722565b82525050565b60006040820190506107686000830185610744565b610775602083018461051b565b9392505050565b6107858161056a565b82525050565b60006040820190506107a0600083018561077c565b6107ad602083018461051b565b939250505056fea2646970667358221220a467b4631cda7cbe999371ad9219db1db5cfa18a2448e416f3fea86aa6572eb964736f6c63430008130033",
+	ABI: "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	Bin: "0x6080604052678ac7230489e8000060015534801561001c57600080fd5b506001546000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055506106c4806100716000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c806306fdde031461006757806318160ddd14610085578063313ce567146100a357806370a08231146100c157806395d89b41146100f1578063a9059cbb1461010f575b600080fd5b61006f61013f565b60405161007c9190610401565b60405180910390f35b61008d610178565b60405161009a919061043c565b60405180910390f35b6100ab610182565b6040516100b8919061043c565b60405180910390f35b6100db60048036038101906100d691906104ba565b610187565b6040516100e8919061043c565b60405180910390f35b6100f96101cf565b6040516101069190610401565b60405180910390f35b61012960048036038101906101249190610513565b610208565b604051610136919061056e565b60405180910390f35b6040518060400160405280601181526020017f5465737420525348323020746f6b656e7300000000000000000000000000000081525081565b6000600154905090565b601281565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6040518060400160405280600381526020017f525348000000000000000000000000000000000000000000000000000000000081525081565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205482111561025557600080fd5b816000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282546102a391906105b8565b92505081905550816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282546102f891906105ec565b925050819055508273ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f9ed053bb818ff08b8353cd46f78db1f0799f31c9e4458fdb425c10eccd2efc4460008560405161035f929190610665565b60405180910390a36001905092915050565b600081519050919050565b600082825260208201905092915050565b60005b838110156103ab578082015181840152602081019050610390565b60008484015250505050565b6000601f19601f8301169050919050565b60006103d382610371565b6103dd818561037c565b93506103ed81856020860161038d565b6103f6816103b7565b840191505092915050565b6000602082019050818103600083015261041b81846103c8565b905092915050565b6000819050919050565b61043681610423565b82525050565b6000602082019050610451600083018461042d565b92915050565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006104878261045c565b9050919050565b6104978161047c565b81146104a257600080fd5b50565b6000813590506104b48161048e565b92915050565b6000602082840312156104d0576104cf610457565b5b60006104de848285016104a5565b91505092915050565b6104f081610423565b81146104fb57600080fd5b50565b60008135905061050d816104e7565b92915050565b6000806040838503121561052a57610529610457565b5b6000610538858286016104a5565b9250506020610549858286016104fe565b9150509250929050565b60008115159050919050565b61056881610553565b82525050565b6000602082019050610583600083018461055f565b92915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b60006105c382610423565b91506105ce83610423565b92508282039050818111156105e6576105e5610589565b5b92915050565b60006105f782610423565b915061060283610423565b925082820190508082111561061a57610619610589565b5b92915050565b6000819050919050565b6000819050919050565b600061064f61064a61064584610620565b61062a565b610423565b9050919050565b61065f81610634565b82525050565b600060408201905061067a6000830185610656565b610687602083018461042d565b939250505056fea2646970667358221220ef54dbb9d968221f0e8df0cc649e23b22c31fd20b1e06f6d471246494338ae7764736f6c63430008130033",
 }
 
 // ContractsABI is the input ABI used to generate the binding from.
@@ -376,141 +376,6 @@ func (_Contracts *ContractsSession) Transfer(recipient common.Address, amount *b
 // Solidity: function transfer(address recipient, uint256 amount) returns(bool)
 func (_Contracts *ContractsTransactorSession) Transfer(recipient common.Address, amount *big.Int) (*types.Transaction, error) {
 	return _Contracts.Contract.Transfer(&_Contracts.TransactOpts, recipient, amount)
-}
-
-// ContractsBalanceChangedIterator is returned from FilterBalanceChanged and is used to iterate over the raw logs and unpacked data for BalanceChanged events raised by the Contracts contract.
-type ContractsBalanceChangedIterator struct {
-	Event *ContractsBalanceChanged // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *ContractsBalanceChangedIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(ContractsBalanceChanged)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(ContractsBalanceChanged)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *ContractsBalanceChangedIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *ContractsBalanceChangedIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// ContractsBalanceChanged represents a BalanceChanged event raised by the Contracts contract.
-type ContractsBalanceChanged struct {
-	Addr    common.Address
-	Balance *big.Int
-	Raw     types.Log // Blockchain specific contextual infos
-}
-
-// FilterBalanceChanged is a free log retrieval operation binding the contract event 0xa448afda7ea1e3a7a10fcab0c29fe9a9dd85791503bf0171f281521551c7ec05.
-//
-// Solidity: event BalanceChanged(address addr, uint256 balance)
-func (_Contracts *ContractsFilterer) FilterBalanceChanged(opts *bind.FilterOpts) (*ContractsBalanceChangedIterator, error) {
-
-	logs, sub, err := _Contracts.contract.FilterLogs(opts, "BalanceChanged")
-	if err != nil {
-		return nil, err
-	}
-	return &ContractsBalanceChangedIterator{contract: _Contracts.contract, event: "BalanceChanged", logs: logs, sub: sub}, nil
-}
-
-// WatchBalanceChanged is a free log subscription operation binding the contract event 0xa448afda7ea1e3a7a10fcab0c29fe9a9dd85791503bf0171f281521551c7ec05.
-//
-// Solidity: event BalanceChanged(address addr, uint256 balance)
-func (_Contracts *ContractsFilterer) WatchBalanceChanged(opts *bind.WatchOpts, sink chan<- *ContractsBalanceChanged) (event.Subscription, error) {
-
-	logs, sub, err := _Contracts.contract.WatchLogs(opts, "BalanceChanged")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(ContractsBalanceChanged)
-				if err := _Contracts.contract.UnpackLog(event, "BalanceChanged", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseBalanceChanged is a log parse operation binding the contract event 0xa448afda7ea1e3a7a10fcab0c29fe9a9dd85791503bf0171f281521551c7ec05.
-//
-// Solidity: event BalanceChanged(address addr, uint256 balance)
-func (_Contracts *ContractsFilterer) ParseBalanceChanged(log types.Log) (*ContractsBalanceChanged, error) {
-	event := new(ContractsBalanceChanged)
-	if err := _Contracts.contract.UnpackLog(event, "BalanceChanged", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
 }
 
 // ContractsTransferIterator is returned from FilterTransfer and is used to iterate over the raw logs and unpacked data for Transfer events raised by the Contracts contract.

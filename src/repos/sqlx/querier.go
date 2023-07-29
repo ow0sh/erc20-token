@@ -99,6 +99,9 @@ func (s *querier) QGet(ctx context.Context, dest interface{}, q repos.DB) error 
 		return errors.Wrap(err, "failed to convert to sql")
 	}
 
+	fmt.Println(sql)
+	fmt.Println(args...)
+
 	err = q.GetContext(ctx, dest, sql, args...)
 	if err != nil {
 		if errors.Is(err, sqlerr.ErrNoRows) {

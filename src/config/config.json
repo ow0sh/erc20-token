@@ -1,8 +1,8 @@
 {
-  "privateKey": "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
+  "privateKey": "460e2b023d9dc4a24dfe5440c0ba5dd54eebf69ae17236ae548a9e5287fb46c9",
   "networkWS": "ws://127.0.0.1:8545/",
   "networkHTTP": "http://127.0.0.1:8545/",
-  "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "contractAddress": "0x741A8673001F9FcA823E925CF8c5bAEDf771592B",
   "db": {
     "url": "postgres://ow0sh:8989@localhost:5432/erc20?sslmode=disable",
     "driver": "pgx"

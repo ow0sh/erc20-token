@@ -35,7 +35,7 @@ func (s baseRepo[T]) WhereID(ids ...int64) baseRepo[T] {
 }
 
 func (s baseRepo[T]) WhereAddr(addr string) baseRepo[T] {
-	s.q.sqlUpdate = s.q.sqlUpdate.Where(squirrel.Eq{"address": addr})
+	s.q.sqlSelect = s.q.sqlSelect.Where(squirrel.Eq{"address": addr})
 	return s
 }
 

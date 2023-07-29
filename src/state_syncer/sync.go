@@ -15,8 +15,12 @@ type StateSync struct {
 	group         *sync.WaitGroup
 }
 
-func NewStateSync(log *logrus.Logger, ch chain.Chain, eventUse usecases.EventUseCase, blockuse usecases.BlockUseCase, startAt uint64) StateSync {
-	return StateSync{eventListener: listener.NewEventListener(log, ch, eventUse, blockuse, startAt)}
+func NewStateSync(log *logrus.Logger,
+	ch chain.Chain,
+	eventUse usecases.EventUseCase,
+	blockUse usecases.BlockUseCase,
+	startAt uint64) StateSync {
+	return StateSync{eventListener: listener.NewEventListener(log, ch, eventUse, blockUse, startAt)}
 }
 
 func (s StateSync) Run(ctx context.Context, group *sync.WaitGroup) {

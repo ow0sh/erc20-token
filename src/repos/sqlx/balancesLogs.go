@@ -71,6 +71,6 @@ func (s *balanceLogRepo) WhereId(ids ...int64) repos.BalanceLogsUpdater {
 }
 
 func (s *balanceLogRepo) WhereAddrU(addr string) repos.BalanceLogsUpdater {
-	s.baseRepo = s.baseRepo.WhereAddr(addr)
+	s.q.sqlUpdate = s.q.sqlUpdate.Where(squirrel.Eq{"address": addr})
 	return s
 }
